@@ -1,0 +1,92 @@
+# CLAUDE.md
+
+> 本仓库维护一份 Shadowrocket 配置文件 `ddh.conf`。本文件为 Claude Code 提供项目上下文，每次会话优先读取。
+
+## 项目概述
+
+- 仓库路径：`D:\file\project\persion-pj\shadowrocket`
+- 核心文件：`ddh.conf`（Shadowrocket 配置）
+- 仓库：https://github.com/donghua2023/shadowrocket-conf
+- 上游来源：[Johnshall/Shadowrocket-ADBlock-Rules-Forever](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)
+- 自动更新源（`update-url`）：`https://raw.githubusercontent.com/donghua2023/shadowrocket-conf/master/ddh.conf`（自托管，整体自更新）
+- 总策略：**国内直连、国外代理**，不含广告过滤
+- 文件内标注最后更新：2026-08-05 11:15:47
+
+## ddh.conf 结构索引
+
+| 区块 | 行号 | 说明 |
+|------|------|------|
+| `[General]` | 2–9 | IPv6 / bypass / DNS / 更新源 |
+| `[Rule]` | 11–446 | 分流规则主体 |
+| `[URL Rewrite]` | 449 | URL 重写 |
+| `[MITM]` | 452 | MITM hostname |
+
+### [General] 关键项
+
+- `ipv6 = false`（默认关闭）
+- `bypass-system = true`
+- `skip-proxy`：局域网 + `*.local *.lan *.internal` 等
+- `bypass-tun`：大量 IPv4/IPv6 保留段
+- `dns-server`：阿里 DoH (`dns.alidns.com`) + 腾讯 DoH (`doh.pub`)
+- `update-url`：`https://raw.githubusercontent.com/donghua2023/shadowrocket-conf/master/ddh.conf`（自托管整体配置，非上游 CNIP 片段）
+
+### [Rule] 分组行号
+
+| 分组 | 起始行 | 备注 |
+|------|--------|------|
+| Google AMP | 18 | |
+| TED | 22 | |
+| Telegram | 23–43 | 域名 + IP-CIDR（91.108.x / 149.154.160/20 / IPv6） |
+| Disqus | 45 | |
+| WhatsApp | 47–48 | |
+| 台/港/澳 | 50 | `appledaily.tw` |
+| Google Voice | 52 | `74.125.0.0/16` |
+| Google Ads/Analytics | 54–62 | 作者标注「可能冗余」 |
+| 华尔街邮报 | 64 | `dowjones.com` |
+| OneDrive/微软 | 66–75 | 作者标注「可能冗余」 |
+| Mendeley | 77 | |
+| Apple News | 79–91 | |
+| GitHub | 93 | `raw.githubusercontent.com` |
+| 苹果域名及 CDN | 97–129 | 大量 `*.akadns.net` |
+| Disney+ | 131–250 | 全球 `disney.*` + 关联品牌 |
+| Amazon / AWS | 252–398 | 含 `DOMAIN-KEYWORD,amazon/aws` |
+| Paramount+ | 400 | |
+| Bing | 402 | |
+| DNS 泄漏测试 | 404–409 | |
+| Forefront / Mozilla / Txt.fyi | 411–415 | |
+| Adobe / AOL / Yahoo | 417–421 | |
+| LinkedIn | 423–424 | |
+| Copilot | 426 | |
+| hoyolab | 428 | |
+| 防止 Bing 地区检测 | 430 | `location.microsoft.com` |
+| devv | 432 | |
+| 蔚蓝档案日服 | 434 | 绕过中国 IP 检测 |
+| Minecraft 下载加速 | 436–437 | |
+| GitHub 在线编辑器 | 439 | `github.dev` |
+| Minecraft 3D 头颅修复 | 441 | `mc-heads.net` |
+| 越狱下载源加速 | 443–444 | |
+| 兜底 | 445–446 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+
+### [URL Rewrite] / [MITM]
+
+- Rewrite（449）：`google.cn` / `g.cn` → `https://www.google.com`（302）
+- MITM hostname（452）：`*.google.cn`, `*.googlevideo.com`
+
+## 已知问题 / 待办
+
+1. **拼写错误（疑似）**：第 270 行 `amaaozn.com`，应为 `amazon.com`，目前可能是无效规则。
+2. **作者标注「可能冗余」**：第 53 行（Google Ads/Analytics）、第 65 行（OneDrive/微软）。
+3. 手写叠加条目（相对上游额外补充）：Minecraft、越狱源、蔚蓝档案、devv / hoyolab / Copilot / Bing 地区等。
+
+## 维护规范
+
+- 新增代理服务：在 `[Rule]` 对应分组下追加 `DOMAIN-SUFFIX,xxx.com,PROXY`，并补一行分组注释。
+- 规则自上而下匹配，`GEOIP,CN,DIRECT` 在 `FINAL,PROXY` 之前；`DOMAIN-SUFFIX` 在 `GEOIP` 之前命中即生效。
+- 修改 DNS / 更新源后需在 Shadowrocket 内重载配置。
+- 开启 IPv6 时同步检查 `bypass-tun` 中 IPv6 段覆盖情况。
+
+## 工作约定
+
+- 编辑 `ddh.conf` 前先读取本文件定位行号，再按需打开对应行段。
+- 保留作者原有的中文分组注释风格（`# 分组名`）。
+- 不要改动 `[General]` 除非用户明确要求。
