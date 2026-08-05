@@ -65,7 +65,8 @@
 | GitHub 在线编辑器 | 439 | `github.dev` |
 | Minecraft 3D 头颅修复 | 441 | `mc-heads.net` |
 | 越狱下载源加速 | 443–444 | |
-| 兜底 | 445–446 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+| Binance 币安直连 | 446–453 | `DOMAIN-SUFFIX` + `DOMAIN-KEYWORD,binance` |
+| 兜底 | 454–455 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
 
 ### [URL Rewrite] / [MITM]
 
@@ -90,3 +91,4 @@
 - 编辑 `ddh.conf` 前先读取本文件定位行号，再按需打开对应行段。
 - 保留作者原有的中文分组注释风格（`# 分组名`）。
 - 不要改动 `[General]` 除非用户明确要求。
+- 提交代码到仓库时需要跟我确认，同意之后再提交
