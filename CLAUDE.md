@@ -66,7 +66,9 @@
 | Minecraft 3D 头颅修复 | 441 | `mc-heads.net` |
 | 越狱下载源加速 | 443–444 | |
 | Binance 币安直连 | 446–453 | `DOMAIN-SUFFIX` + `DOMAIN-KEYWORD,binance` |
-| 兜底 | 454–455 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+| MT5 / MetaTrader 直连 | 455–459 | `metatrader5.com` 等 + `DOMAIN-KEYWORD,metaquotes` |
+| 同花顺直连 | 461–464 | `10jqka.com.cn` / `myhexin.com` + `DOMAIN-KEYWORD,hexin` |
+| 兜底 | 465–466 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
 
 ### [URL Rewrite] / [MITM]
 
