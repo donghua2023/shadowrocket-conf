@@ -68,7 +68,10 @@
 | Binance 币安直连 | 446–453 | `DOMAIN-SUFFIX` + `DOMAIN-KEYWORD,binance` |
 | MT5 / MetaTrader 直连 | 455–459 | `metatrader5.com` 等 + `DOMAIN-KEYWORD,metaquotes` |
 | 同花顺直连 | 461–464 | `10jqka.com.cn` / `myhexin.com` + `DOMAIN-KEYWORD,hexin` |
-| 兜底 | 465–466 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+| 微信直连 | 466–470 | `weixin.com` / `wechat.com` + `DOMAIN-KEYWORD,weixin` |
+| QQ 直连 | 472–478 | `qq.com` / `gtimg.com` + `DOMAIN-KEYWORD,qq` |
+| 抖音直连 | 480–488 | `douyin.com` / `ixigua.com` / `snssdk.com` + `DOMAIN-KEYWORD,douyin` |
+| 兜底 | 489–490 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
 
 ### [URL Rewrite] / [MITM]
 
