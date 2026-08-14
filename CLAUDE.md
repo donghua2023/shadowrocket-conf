@@ -10,16 +10,16 @@
 - 上游来源：[Johnshall/Shadowrocket-ADBlock-Rules-Forever](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)
 - 自动更新源（`update-url`）：`https://raw.githubusercontent.com/donghua2023/shadowrocket-conf/master/ddh.conf`（自托管，整体自更新）
 - 总策略：**国内直连、国外代理**，不含广告过滤
-- 文件内标注最后更新：2026-08-05 11:15:47
+- 文件内标注最后更新：2026-08-14 15:00:45
 
 ## ddh.conf 结构索引
 
 | 区块 | 行号 | 说明 |
 |------|------|------|
 | `[General]` | 2–9 | IPv6 / bypass / DNS / 更新源 |
-| `[Rule]` | 11–446 | 分流规则主体 |
-| `[URL Rewrite]` | 449 | URL 重写 |
-| `[MITM]` | 452 | MITM hostname |
+| `[Rule]` | 11–446 | 分流规则主体（新增直连分组后实际延伸至 517 行） |
+| `[URL Rewrite]` | 449 | URL 重写（新增直连条后实际位于 520 行） |
+| `[MITM]` | 452 | MITM hostname（新增直连条后实际位于 523 行） |
 
 ### [General] 关键项
 
@@ -70,8 +70,16 @@
 | 同花顺直连 | 461–464 | `10jqka.com.cn` / `myhexin.com` + `DOMAIN-KEYWORD,hexin` |
 | 微信直连 | 466–470 | `weixin.com` / `wechat.com` + `DOMAIN-KEYWORD,weixin` |
 | QQ 直连 | 472–478 | `qq.com` / `gtimg.com` + `DOMAIN-KEYWORD,qq` |
-| 抖音直连 | 480–488 | `douyin.com` / `ixigua.com` / `snssdk.com` + `DOMAIN-KEYWORD,douyin` |
-| 兜底 | 489–490 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+| 抖音直连 | 480–485 | `douyin.com` / `ixigua.com` / `snssdk.com` + `DOMAIN-KEYWORD,douyin` |
+| 豆包直连 | 486–489 | `doubao.com` / `doubao.cn` + `DOMAIN-KEYWORD,doubao` |
+| 工商银行直连 | 490–494 | `icbc.com.cn` / `icbc.com` / `icbc.com.hk` + `DOMAIN-KEYWORD,icbc` |
+| 建设银行直连 | 495–499 | `ccb.com.cn` / `ccb.com` / `ccbqn.cn` + `DOMAIN-KEYWORD,ccb` |
+| 上海银行直连 | 500–502 | `bosc.cn` + `DOMAIN-KEYWORD,bosc` |
+| 招商银行直连 | 503–507 | `cmbchina.com` / `cmb.com` + `DOMAIN-KEYWORD,cmb` |
+| 支付宝直连 | 508–512 | `alipay.com` / `alipay.net` / `alipayobjects.com` + `DOMAIN-KEYWORD,alipay` |
+| 云闪付直连 | 513–515 | `95516.com` + `DOMAIN-KEYWORD,95516` |
+| 微信直连(兜底注释) | 516 | 提示已在上方微信分组覆盖 |
+| 兜底 | 517–518 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
 
 ### [URL Rewrite] / [MITM]
 
