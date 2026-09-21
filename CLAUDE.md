@@ -17,9 +17,9 @@
 | 区块 | 行号 | 说明 |
 |------|------|------|
 | `[General]` | 2–9 | IPv6 / bypass / DNS / 更新源 |
-| `[Rule]` | 11–446 | 分流规则主体（新增直连分组后实际延伸至 517 行） |
-| `[URL Rewrite]` | 449 | URL 重写（新增直连条后实际位于 520 行） |
-| `[MITM]` | 452 | MITM hostname（新增直连条后实际位于 523 行） |
+| `[Rule]` | 11–452 | 分流规则主体（新增直连分组后实际延伸至 523 行） |
+| `[URL Rewrite]` | 449 | URL 重写（新增直连条后实际位于 526 行） |
+| `[MITM]` | 452 | MITM hostname（新增直连条后实际位于 529 行） |
 
 ### [General] 关键项
 
@@ -78,8 +78,9 @@
 | 招商银行直连 | 503–507 | `cmbchina.com` / `cmb.com` + `DOMAIN-KEYWORD,cmb` |
 | 支付宝直连 | 508–512 | `alipay.com` / `alipay.net` / `alipayobjects.com` + `DOMAIN-KEYWORD,alipay` |
 | 云闪付直连 | 513–515 | `95516.com` + `DOMAIN-KEYWORD,95516` |
-| 微信直连(兜底注释) | 516 | 提示已在上方微信分组覆盖 |
-| 兜底 | 517–518 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
+| 转转直连 | 516–521 | `zhuanzhuan.com` / `zhuaninc.com` / `zhuanzhuan.cn` + `DOMAIN-KEYWORD,zhuanzhuan/zhuaninc` |
+| 微信直连(兜底注释) | 522 | 提示已在上方微信分组覆盖 |
+| 兜底 | 523–524 | `GEOIP,CN,DIRECT` → `FINAL,PROXY` |
 
 ### [URL Rewrite] / [MITM]
 
